@@ -4,8 +4,7 @@ Gem::Specification.new do |spec|
   spec.version = "0.1"
   
   spec.authors = ["Ed Sumerfield"]
-  spec.date = %q{2010-10-04}
-  spec.email = %q{judofyr@gmail.com}
+  spec.email = "annotation@bitbashers.org"
 
   spec.files = ["annotation.rb", "annotation_spec.rb", "README", "Rakefile", "Gemfile"]
 
