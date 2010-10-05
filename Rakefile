@@ -1,5 +1,8 @@
 require 'rubygems'
 require 'rake/gempackagetask'
+require 'rake/clean'
+
+CLOBBER.include('pkg')
 
 task :default => [:rspec]
 
