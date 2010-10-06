@@ -1,5 +1,70 @@
 == Welcome to Annotation
 
-Annotation := An annotation is a special form of syntactic metadata that can be added to source code to drive behavior at the point of definition.
+Annotation := An annotation is a special form of syntactic metadata
+that can be added to source code to drive behavior at the point of definition.
+
+== Problem
+
+The problem I wanted to solve is hidden filters. So often I am reading
+what some controller is tring to do and failing because I have
+forgotten to check on the before_filter declarations normally at the
+top of the source file.
+
+    class UsersController
+        before_filter :something, :something_else
+
+        # long source file 
+
+        def something
+        end
+
+        def something_else
+        end
+    end
+
+The idea is that we should be declaring these dependencies close to
+each other in the file so that these mistakes do not slow us down. The
+obvious answer is to just move the call to the before_filter
+
+    class UsersController
+
+        # long source file 
+
+        before_filter :something
+        def something
+        end
+
+        before_filter :something_else
+        def something_else
+        end
+    end
+
+This this is a simple improvement to the usual approach it does
+require that the method name is repeated.
+
+Essentally, what we are looking for here is the ability to associated
+behavior with the method. In this case is is wrapping the method with
+a call to another method but technically we need this for any
+additional  behavior that needs to relate to a method.
+
+This annotation gem allows you to "annotate" the method that follows
+making it easier to associate behavior.
+
+       class UsersController
+
+             annotation :before_filter
+             def something
+             end
+
+             annotation :before_filter
+             annotation :after_filter
+             def something_else
+             end
+       end
+
+TODO
+
+Talk about deprecation and access right options.
+
 
 
